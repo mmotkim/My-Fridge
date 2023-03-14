@@ -49,7 +49,8 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.getRequestDispatcher("register.jsp").forward(request, response);
     }
 
     /**
@@ -67,20 +68,16 @@ public class RegisterController extends HttpServlet {
             HttpSession session = request.getSession();
             String name = request.getParameter("name");
             String email = request.getParameter("email");
-            String phone = request.getParameter("phone");
-            String address = request.getParameter("address");
-            String gender = request.getParameter("gender");
             String pass = request.getParameter("pass");
             UserDAO udao = new UserDAO();
             User checkExist = udao.getUserByEmail(email);
             if (checkExist == null) {
-                udao.insertUser(name, email, phone, address, pass, Integer.valueOf(gender));
-                User u = new User(name, email, pass, address, phone, new Roles(1));
+                udao.insertUser(name, email, pass);
 //                SendMail sm = new SendMail();
 //                sm.send(email, "New Register", "Welcome to ours system!");
                 response.sendRedirect("./HomePage");
             } else {
-                request.setAttribute("messregis", "Email already exist in system!");
+                request.setAttribute("messregis", "Email already registered! Please login instead.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
 

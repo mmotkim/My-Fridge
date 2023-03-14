@@ -71,6 +71,8 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession();
             String email = request.getParameter("email");
             String pass = request.getParameter("pass");
+            request.setAttribute("e", email);
+            request.setAttribute("p", pass);
             UserDAO udao = new UserDAO();
             MD5 md5 = new MD5();
             ArrayList<User> userList = udao.getAllUser();

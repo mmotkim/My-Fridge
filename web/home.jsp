@@ -1,227 +1,170 @@
-<%-- 
-    Document   : home
-    Created on : Mar 1, 2023, 4:07:25 PM
-    Author     : asus
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Homepage for MyFridge" />
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors, modified by Mmotkim" />
+    <meta name="generator" content="Hugo 0.101.0" />
+    <title>Carousel Template Â· Bootstrap v4.6</title>
 
-    <head>
-        <!-- basic -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- mobile metas -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-        <!-- site metas -->
-        <title>SHOP</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/carousel/" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
 
-        <!-- bootstrap css -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <!-- style css -->
-        <link rel="stylesheet" href="css/style.css">
-        <!-- Responsive-->
-        <link rel="stylesheet" href="css/responsive.css">
-        <!-- fevicon -->    
-        <link rel="icon" href="images/fevicon.png" type="image/gif" />
-        <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-        <!-- Tweaks for older IEs-->
-        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-    </head>
-    <!-- body -->
+    <!-- Bootstrap core CSS -->
+    <link href="Tests/css/bootstrap.min.css" rel="stylesheet" />
 
-    <body class="main-layout">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
-        <div class="wrapper">
-            <div id="content">
-                <jsp:include page="header.jsp"/>
-                <!-- Categories -->
-                <div style="background-color: white" class="Categories">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="title">
-                                    <form style="
-                                          color: #555;
-                                          display: flex;
-                                          padding: 2px;
-                                          border: 1px solid currentColor;
-                                          border-radius: 16px;
-                                          width: 30%;
-                                          float: right;
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 
-                                          " action="ProductList?index=1" name="desktop-seacrh" method="get">
-                                        <input style="
-                                               border: none;
-                                               background: transparent;
-                                               margin: 0;
-                                               padding-right: 160px;
-                                               font-size: 14px;
-                                               color: inherit;
-                                               border: 1px solid transparent;
-                                               border-radius: 10px;
-                                               float: left;
-                                               " type="text" name="search"  class="input-text" value="" placeholder="search product...">
-                                        <i style="font-size: 25px; padding: 7px; float: right" class='fa fa-search'></i>
-                                    </form> 
-                                    <h2> Categories</h2>
-                                    <ul class="categiri">
-                                        <li class="active"><a href="#">Phone</a></li>
-                                        <li><a href="#">Smart Watch</a></li>
-                                        <li><a href="#shoes">Latop</a></li>
-                                        <li><a href="#">Smart TV</a></li>
-                                        <li><a href="#jewellery">IPAD</a></li>
-                                        <li><a href="#">Computer Screen</a></li>
-                                        <li><a href="#kids">Keyboard</a></li>
-                                        <li><a href="#">Mouse</a></li>
-                                        <li><a href="#">Accessory</a></li>
-                                        <li><a href="#">Accessory</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+    <!-- Custom styles for this template -->
+    <link href="Tests/home.css" rel="stylesheet" />
+  </head>
 
-                        <!-- news brand -->
-                        <div id="brand"  class="brand-bg">
-                            <h3>New brands</h3>
-                            <div class="row">
-                                <div>
-                                    <div class="places-list">
-                                        <c:forEach var="p" items="${plist}">
-                                            <div class="place-item"> 
-                                                <a href="./ProductDetails?pid=${p.getId()}" class="place-img">
-                                                    <img src="${p.getImg()}" alt="img">
-                                                </a>
-                                                <div class="place-body">
-                                                    <h4 class="place-heading"" href="./ProductDetails?pid=${p.getId()}" class="pr-name">${p.getName()}</a></h4>
-                                                    <div class="place-price">
-                                                        <ins><span>Price: <span class="currencySymbol">$</span>${p.getPrice()}</span></ins>
-                                                    </div>
-                                                    <a href="./ProductDetails?pid=${p.getId()}" class="place-buy">ORDER</a>
-                                                </div>
-                                            </div>
-                                        </c:forEach>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+  <body style="background-color: white">
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-dark mx-5 px-5 fixed-top" style="background-color: rgba(0, 0, 0, 0.3); border-radius: 20px; margin-top: 10px">
+        <a class="navbar-brand" href="#"><h3>My Fridge</h3></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Search by Ingredients</a>
+            </li>
+          </ul>
 
-                        <!-- end news brand -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./recipes">Your Recipes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./register">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mr-md-1 rounded" href="./login">Login</a>
+            </li>
+          </ul>
+          
+        </div>
+      </nav>
+    </header>
 
-                        <!-- news sh -->
-                        <div id="sh" class="sh">
-                            <h3>Best Seller</h3>
-                            <div class="row">
-                                <div>
-                                    <div class="places-list">
-                                        <c:forEach var="p" items="${plist1}">                              
-                                            <div class="place-item">
-                                                <a href="./ProductDetails?pid=${p.getId()}" class="place-img">
-                                                    <img src="${p.getImg()}" alt="img">
-                                                </a>
-                                                <div class="place-body">
-                                                    <h4 class="place-heading"><a href="./ProductDetails?pid=${p.getId()}"class="pr-name">${p.getName()}</a></h4>
-                                                    <div class="place-price">
-                                                        <ins><span>Price: <span class="currencySymbol">$</span >${p.getPrice()}</span></ins>
-                                                    </div>
-                                                    <a href="./ProductDetails?pid=${p.getId()}" class="place-buy">ORDER</a>
-                                                </div>
-                                            </div>
-                                        </c:forEach>                   
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+    <main role="main">
+      <div
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(Tests/rice.jpg); background-repeat: no-repeat; background-size: cover"
+        class="container-fluid vh-100 d-flex align-items-center justify-content-center text-center"
+      >
+        <div class="text-light vw-50" style="flex-basis: 1200px">
+          <h1 class="p-3 font-weight-bold" style="font-size: 55px">The home for all your recipes.</h1>
+          <h5 class="font-weight-normal font-italic">Show ready-to-make recipes based on your available ingredients:</h5>
+          <form class="form-text">
+            <div class="input-group mt-md-4">
+              <input type="text" class="form-control py-2 w-50" placeholder="Enter your ingredients, spaced by comma" required />
+              <span class="input-group-append">
+                <button title="Search" class="input-group-text bg-transparent border-0 border" type="button">
+                  <i class="bi bi-search white" style="color: white"></i>
+                </button>
+              </span>
             </div>
-            <!-- end news shoes -->
+          </form>
+        </div>
+      </div>
 
-            <!-- end Categories -->
+      <!-- Marketing messaging and featurettes
+  ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
 
-            <section>
-                <!--  save -->
+      <div class="container marketing">
+        <!-- START THE FEATURETTES -->
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="save">
-                                <div class="row">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                        <div style="background: gray" class="save_box">
-                                            <h3>save up to 50%</h3>
-                                            <a href="#">Buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end save -->
-            </section>
+        <hr class="featurette-divider" />
 
-            <!-- news Jewellery -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="jewellery" class="Jewellery-bg">
-                            <h3>New Jewellery</h3>
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 margintop">
-                                    <div class="Jewellery-box">
-                                        <h5>Sale</h5>
-                                        <i><img src="icon/j1.png"/>
-                                        </i>
-                                        <h4>Price $<span class="nolmal">100</span></h4>
-
-                                    </div>
-                                    <a class="buynow" href="#">Buy now</a>
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 margintop">
-                                    <div class="Jewellery-box">
-                                        <i><img src="icon/j2.png"/></i>
-                                        <h4>Price $<span class="nolmal">100</span></h4>
-                                    </div>
-                                    <a class="buynow" href="#">Buy now</a>
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                    <div class="Jewellery-box">
-                                        <i><img src="icon/j3.png"/></i>
-                                        <h4>Price $<span class="nolmal">100</span></h4>
-                                    </div>
-                                    <a class="buynow" href="#">Buy now</a>
-                                </div>
-                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                                    <div class="Jewellery-box">
-                                        <i><img src="icon/j4.png"/></i>
-                                        <h4>Price $<span class="nolmal">100</span></h4>
-                                    </div>
-                                    <a class="buynow" href="#">Buy now</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- end news Jewellery -->
-
-            <!--  footer -->
-            <jsp:include page="footer.jsp"/>
-            <!-- end footer -->
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Never ask <span style="color: var(--primary)">"What should I make for dinner?"</span> again.</h2>
+            <p class="lead">Select what you have in your fridge, we'll do the recommendations</p>
+          </div>
+          <div class="col-md-5">
+            <img src="Tests/smile.jpg" width="500" height="500" class="featurette-image img-fluid mx-auto" alt="Select ingredients" />
+          </div>
         </div>
 
-        <div class="overlay"></div>
+        <hr class="featurette-divider" />
 
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Feeling creative? <span style="color: var(--primary)">Add your own proudly-made recipes</span></h2>
+            <p class="lead">Easy steps, fluently al dente.</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <img src="Tests/smile.jpg" width="500" height="500" class="featurette-image img-fluid mx-auto" alt="Select ingredients" />
+          </div>
+        </div>
 
+        <hr class="featurette-divider" />
 
-    </body>
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Your favorite menu. <span style="color: var(--primary)">All in one place.</span></h2>
+            <p class="lead">
+              And yes, this is the last block of representative placeholder content.
+            </p>
+          </div>
+          <div class="col-md-5">
+            <img src="Tests/smile.jpg" width="500" height="500" class="featurette-image img-fluid mx-auto" alt="Select ingredients" />
+          </div>
+        </div>
 
+        <hr class="featurette-divider" />
+
+        <!-- /END THE FEATURETTES -->
+      </div>
+      <!-- /.container -->
+
+      <!-- FOOTER -->
+      <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>Made by Mmotkim &middot; PRJ 301 Solo Project</p>
+      </footer>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>');
+    </script>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

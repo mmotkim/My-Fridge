@@ -75,14 +75,14 @@ public class UserDAO extends DBContext {
         return null;
     }
 
-    public void insertUser(String name, String email, String phone, String pass) {
-        String sql = "  insert into [User] ([userId],[roleId],[email],[password],[name] )\n"
-                + "  values (?,1,?,?,?)";
+    public void insertUser(String name, String email, String pass) {
+        String sql = "  insert into [User] ([roleId],[email],[password],[name])\n"
+                + "  values (1,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(3, email);
-            ps.setString(4, md5.getMd5(pass));
-            ps.setString(5, name);
+            ps.setString(1, email);
+            ps.setString(2, md5.getMd5(pass));
+            ps.setString(3, name);
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -135,9 +135,8 @@ public class UserDAO extends DBContext {
       public static void main(String[] args) {
         UserDAO u = new UserDAO(); 
         ArrayList<User> list = u.getAllUser();
-        u.deleteuser(6);   
           for (User user : list) {
-              System.out.println(user.getId());
+              System.out.println(user.getId() + user.getEmail() + user.getPassword());
           }
     }
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>CSS Test</title>
+</head>
+
+<body>
+    <h2 id="x"></h2>
+    <script>
+        const person = {
+            firstName: "not",
+            lastName: "me",
+            fullName: function () {
+                return this.firstName + " " + this.lastName;
+            }
+        }
+        const person1 = {
+            firstName: "John",
+            lastName: "Doe",
+        }
+        let fullName = person.fullName.bind(person1);
+        document.getElementById("x").innerHTML
+            = fullName();
+            
+    </script>
+</body>
+
+<style>
+    #x {
+        font-size: larger;
+        font-family: Georgia;
+    }
+</style>
+
+</html>

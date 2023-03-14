@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>CSS Test</title>
+</head>
+
+<body>
+    <form>
+        <div id = "usernameInput" class="input">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+        </div>
+
+        <div id = "pwsInput" class = "input">
+            <label for="pwd">Password:</label><br>
+            <input type="password" id="pwd" name="pwd">
+        </div>
+        
+    </form>
+</body>
+
+<style>
+    #usernameInput{
+        font-family: Georgia; /* kieu font cho label username*/
+        color: brown;
+        text-align: center;
+        text-shadow: 0px 0px 5px #fd1892, 0 0 5px orchid; 
+    }
+  
+    #pwsInput{
+        text-align: center;
+        background-image: linear-gradient(to left, 
+            violet, indigo, blue, green, 
+            yellow, orange, red);
+        -webkit-background-clip: text;
+        background-clip: none;
+        -webkit-text-fill-color: transparent;
+    }
+    input{
+        margin: 10px;
+        width: auto;
+        height: auto;
+        padding: 2%;
+        box-sizing: border-box;
+        border: 2px 1em transparent;
+        border-radius: 50px;
+        background-image: linear-gradient(white, white),
+            linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);-webkit-border-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+    }
+    body{
+        position: absolute;
+        width: 300px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        margin: -100px 0 0 -150px;
+    }
+
+</style>
+
+</html>

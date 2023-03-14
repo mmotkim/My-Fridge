@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test</title>
+    <link rel="icon" type="image/png" href="2b.jpg"> 
+    
+</head>
+
+<script>
+    function smile(){
+        document.getElementById('02').src="smile.jpg";
+        document.getElementById('buttonId').disabled=true;
+        document.getElementById('buttonId').value="Cheese!";
+    }
+</script>
+
+<body>
+    <img id="02" src="2b.jpg" width="500" length="500">
+    <p><input type="button" id="buttonId" value="Say cheese!" onclick="smile()"></p>
+</body>
+</html> 
