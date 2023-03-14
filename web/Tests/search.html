@@ -86,32 +86,24 @@
           <div class="row">
             <div class="col-lg-3">
               <label class="control control--checkbox">First checkbox
-                <input type="checkbox" checked="checked" />
+                <input type="checkbox" name="ingr" value="egg" />
                 <div class="control__indicator"></div>
               </label>
             </div>
             <div class="col-lg-3">
               <label class="control control--checkbox">First checkbox
-                <input type="checkbox" checked="checked" />
+                <input type="checkbox" name="ingr" value="tomato" />
                 <div class="control__indicator"></div>
               </label>
             </div>
-            <div class="col-lg-3">
-              <label class="control control--checkbox">First checkbox
-                <input type="checkbox" checked="checked" />
-                <div class="control__indicator"></div>
-              </label>
-            </div>
-            <div class="col-lg-3">
-              <label class="control control--checkbox">First checkbox
-                <input type="checkbox" checked="checked" />
-                <div class="control__indicator"></div>
-              </label>
-            </div>
+            
+            <input type="hidden" name="selectedIngrs" id="selectedIngrs" />
+
           </div>
 
           <div class="form-group">
-            <button type="button" class="control form-control btn btn-primary px-3">Show me the recipes</button>
+            <button type="button" onclick="doIngrs()" class="control form-control btn btn-primary px-3">Show me the
+              recipes</button>
           </div>
 
         </form>
@@ -124,6 +116,25 @@
       <p>Made by Mmotkim &middot; PRJ 301 Solo Project</p>
     </footer>
   </main>
+
+  <script>
+    function doIngrs() {
+      let arr = [];
+      let checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+
+      checkboxes.forEach((item) => {
+        arr.push(item.value)
+      })
+
+      var hiddenSelectedIngrs = document.getElementById("selectedIngrs");
+      
+      hiddenSelectedIngrs.value = arr.join(",");
+
+      var form = document.getElementById("ingr");
+      form.submit();
+      
+    }
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
