@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Category;
-import model.Product;
+import model.Recipe;
 import model.User;
 
 /**
@@ -42,7 +42,7 @@ public class ManagerProduct extends HttpServlet {
             User u = (User) object;
             if (u.getRoles().getId() == 2) {
                 ProductDAO pdao = new ProductDAO();
-                ArrayList<Product> pl = pdao.getAllProduct("", "");
+                ArrayList<Recipe> pl = pdao.getAllProduct("", "");
                 ArrayList<Category> clist = pdao.getCategory();
                 request.setAttribute("pl", pl);
                 request.setAttribute("clist", clist);

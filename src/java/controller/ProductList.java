@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Category;
-import model.Product;
+import model.Recipe;
 
 /**
  *
@@ -35,30 +35,7 @@ public class ProductList extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            HttpSession session = request.getSession();
-            String categoryId = request.getParameter("categoryId") == null ? "" : request.getParameter("categoryId");
-            String search = request.getParameter("search") == null ? "" : request.getParameter("search");
-            String sort = request.getParameter("sort") == null ? "" : request.getParameter("sort");
-            search = search.trim();
-            ProductDAO pdao = new ProductDAO();
-            ArrayList<Category> clist = pdao.getCategory();
-            int totalproduct = pdao.getNumberProduct(categoryId,search);
-            int numberPage = (int) Math.ceil((double) totalproduct / 6);
-            int index;
-            String currentPage = request.getParameter("index");
-            if (currentPage == null) {
-                index = 1;
-            } else {
-                index = Integer.parseInt(currentPage);
-            }
-            ArrayList<Product> plist = pdao.getProduct(categoryId, search, index,sort);
-            request.setAttribute("numberPage", numberPage);
-            request.setAttribute("plist", plist);
-            request.setAttribute("clist", clist);
-            request.getRequestDispatcher("productlist.jsp").forward(request, response);
-        } catch (Exception e) {
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -87,7 +64,8 @@ public class ProductList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+
     }
 
     /**

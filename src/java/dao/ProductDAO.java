@@ -22,7 +22,7 @@ public class ProductDAO extends DBContext {
         System.out.println(ProductDAO.getProduct("2", "", 1,"1"));
     }
 
-    public ArrayList<Product> getProduct(String cid, String search, int index, String sort) {
+    public ArrayList<Recipe> getProduct(String cid, String search, int index, String sort) {
         String sortby = "";
         switch (sort) {
             case "1":
@@ -39,7 +39,7 @@ public class ProductDAO extends DBContext {
                 break;
 
         }
-        ArrayList<Product> list = new ArrayList<>();
+        ArrayList<Recipe> list = new ArrayList<>();
         String sql = "  select * from [Product_HE163397] p, Category_HE163397 c where p.category_id = c.category_id \n"
                 + "  and p.category_id like ?  and p.product_name like ?  "
                 + sortby
@@ -51,15 +51,15 @@ public class ProductDAO extends DBContext {
             ps.setInt(3, (index - 1) * 6);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), new Category(rs.getInt("category_id"), rs.getString("category_name")), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9)));
+                list.add(new Recipe(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), new Category(rs.getInt("category_id"), rs.getString("category_name")), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9)));
             }
         } catch (Exception e) {
         }
         return list;
     }
 
-    public ArrayList<Product> getTopSelling() {
-        ArrayList<Product> list = new ArrayList<>();
+    public ArrayList<Recipe> getTopSelling() {
+        ArrayList<Recipe> list = new ArrayList<>();
         String sql = "select top 6 p.*,c.* from Product_HE163397 p, (select sum(quantity) as numberSell, product_id from OrderDetail_HE163397 group by product_id) as b, Category_HE163397 c\n"
                 + " where b.product_id = p.product_id and p.category_id = c.category_id order by b.numberSell desc";
         try {
@@ -67,15 +67,15 @@ public class ProductDAO extends DBContext {
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), new Category(rs.getInt("category_id"), rs.getString("category_name")), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9)));
+                list.add(new Recipe(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), new Category(rs.getInt("category_id"), rs.getString("category_name")), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9)));
             }
         } catch (Exception e) {
         }
         return list;
     }
 
-    public ArrayList<Product> getAllProduct(String cid, String search) {
-        ArrayList<Product> list = new ArrayList<>();
+    public ArrayList<Recipe> getAllProduct(String cid, String search) {
+        ArrayList<Recipe> list = new ArrayList<>();
         String sql = "  select * from Product_HE163397 p, Category_HE163397 c where p.category_id = c.category_id \n"
                 + "  and p.category_id like ?  and p.product_name like ?"
                 + " order by p.product_id asc";
@@ -85,8 +85,7 @@ public class ProductDAO extends DBContext {
             ps.setString(2, "%" + search + "%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), new Category(rs.getInt("category_id"), rs.getString("category_name")), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9)));
-                
+                list.add(new Recipe(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), new Category(rs.getInt("category_id"), rs.getString("category_name")), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9)));
             }
         } catch (Exception e) {
         }
@@ -94,7 +93,7 @@ public class ProductDAO extends DBContext {
     }
 
     public int getNumberProduct(String cid, String search) {
-        ArrayList<Product> list = new ArrayList<>();
+        ArrayList<Recipe> list = new ArrayList<>();
         String sql = "  select count(*) from Product_HE163397 p, Category_HE163397 c where p.category_id = c.category_id \n"
                 + "  and p.category_id like ?  and p.product_name like ?";
         try {
@@ -110,7 +109,7 @@ public class ProductDAO extends DBContext {
         return 0;
     }
 
-    public Product getProductById(int pid) {
+    public Recipe getProductById(int pid) {
         String sql = " select * from Product_HE163397 p, Category_HE163397 c where p.category_id = c.category_id \n"
                 + "  and p.product_id = ?";
         try {
@@ -118,7 +117,7 @@ public class ProductDAO extends DBContext {
             ps.setInt(1, pid);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Product p = new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), new Category(rs.getInt("category_id"), rs.getString("category_name")), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9));
+                Recipe p = new Recipe(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), new Category(rs.getInt("category_id"), rs.getString("category_name")), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9));
                 return p;
             }
         } catch (Exception e) {

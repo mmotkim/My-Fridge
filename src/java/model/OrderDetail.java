@@ -12,11 +12,11 @@ package model;
 public class OrderDetail {
     private int id;
     private int orderId;
-    private Product product;
+    private Recipe product;
     private double price;
     private int quantity;
 
-    public OrderDetail(int id, int orderId, Product product, double price, int quantity) {
+    public OrderDetail(int id, int orderId, Recipe product, double price, int quantity) {
         this.id = id;
         this.orderId = orderId;
         this.product = product;
@@ -32,7 +32,7 @@ public class OrderDetail {
         this.orderId = orderId;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Recipe product) {
         this.product = product;
     }
 
@@ -52,7 +52,7 @@ public class OrderDetail {
         return orderId;
     }
 
-    public Product getProduct() {
+    public Recipe getProduct() {
         return product;
     }
 

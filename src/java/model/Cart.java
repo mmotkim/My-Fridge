@@ -16,7 +16,7 @@ public class Cart {
     private int uid;
     private int pid;
     private int quantity;
-    private Product product;
+    private Recipe product;
     private User u;
 
     public Cart() {
@@ -28,7 +28,7 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public Cart(int uid, int pid, int quantity, Product product, User u) {
+    public Cart(int uid, int pid, int quantity, Recipe product, User u) {
         this.uid = uid;
         this.pid = pid;
         this.quantity = quantity;
@@ -60,11 +60,11 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
+    public Recipe getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Recipe product) {
         this.product = product;
     }
 

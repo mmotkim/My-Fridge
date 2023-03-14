@@ -5,7 +5,9 @@
  */
 package controller;
 
+import dao.OrderDAO;
 import dao.ProductDAO;
+import dao.RecipeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,7 +17,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Category;
-import model.Product;
+import model.Recipe;
+import model.User;
 
 /**
  *
@@ -23,45 +26,20 @@ import model.Product;
  */
 public class HomePage extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            ProductDAO pdao = new ProductDAO();
-            ArrayList<Product> plist = pdao.getProduct("", "", 1, "1");
-            ArrayList<Product> plist2 = pdao.getProduct("2", "", 1, "1");
-            ArrayList<Product> plist1 = pdao.getTopSelling();
-            request.setAttribute("plist", plist);
-            request.setAttribute("plist1", plist1);
-            request.setAttribute("plist2", plist2);
-//            response.getWriter().print(plist.size());
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-        } catch (Exception e) {
-        }
-    }
+        HttpSession session = request.getSession();
+        
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.getRequestDispatcher("home.jsp").forward(request, response);
+
     }
 
     /**
@@ -75,7 +53,14 @@ public class HomePage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+
+        String homeSearch = request.getParameter("homeSearch");
+        RecipeDAO rdao = new RecipeDAO();
+        ArrayList<Recipe> recipeList = rdao.getRecipesFromIngredients(homeSearch);
+        request.setAttribute("list", recipeList);
+        request.getRequestDispatcher("showRecipes.jsp").forward(request, response);
+        
     }
 
     /**
@@ -87,5 +72,10 @@ public class HomePage extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    public static void main(String[] args) {
+        
+        
+    }
 
 }

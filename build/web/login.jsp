@@ -59,8 +59,6 @@
                   </div>
                 </div>
               </form>
-                 ${e}
-        ${p}
               <p class="w-100 text-center">${mess}</p>
 
               <p class="w-100 text-center">&mdash; Don't have an account? &mdash;</p>

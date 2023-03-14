@@ -61,7 +61,7 @@ public class OrderDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Cart c = new Cart(rs.getInt(1), rs.getInt(2), rs.getInt(3));
-                Product p = new Product();
+                Recipe p = new Recipe();
                 p.setId(rs.getInt(4));
                 p.setName(rs.getString(5));
                 p.setImg(rs.getString(9));
@@ -88,7 +88,7 @@ public class OrderDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Cart c = new Cart(rs.getInt(1), rs.getInt(2), rs.getInt(3));
-                Product p = new Product();
+                Recipe p = new Recipe();
                 p.setId(rs.getInt(4));
                 p.setName(rs.getString(5));
                 p.setImg(rs.getString(9));
@@ -124,7 +124,7 @@ public class OrderDAO extends DBContext {
             ps.setInt(1, oid);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Product p = new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), new Category(rs.getInt("category_id")), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9));
+                Recipe p = new Recipe(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getInt(4), new Category(rs.getInt("category_id")), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9));
                 odl.add(new OrderDetail(rs.getInt("detail_id"), rs.getInt("order_id"), p, rs.getDouble("price"), rs.getInt("quantity")));
             }
         } catch (Exception e) {
