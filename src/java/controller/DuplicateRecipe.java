@@ -12,16 +12,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import model.Ingredient;
-import model.Recipe;
 import model.User;
 
 /**
  *
  * @author mmotk
  */
-public class Search extends HttpServlet {
+public class DuplicateRecipe extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,16 +32,22 @@ public class Search extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        HttpSession session = request.getSession();
-        Object object = session.getAttribute("account");
         RecipeDAO rdao = new RecipeDAO();
-        ArrayList<Ingredient> ingrs = rdao.getAllIngredients();
-        User u = (User) object;
-        request.setAttribute("ingrs", ingrs);
-        request.setAttribute("user", u);
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+        try {
+            HttpSession session = request.getSession();
+            Object object = session.getAttribute("account");
+            User u = (User) object;
+            String rid = request.getParameter("rid") == null ? "" : request.getParameter("rid");
 
+            if (session.getAttribute("account") == null) {
+                response.sendRedirect("login");
+            } else {
+                rdao.duplicateRecipe(u.getId(), Integer.parseInt(rid));
+                response.sendRedirect("./MyRecipes");
+            }
+
+        } catch (Exception e) {
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,16 +76,7 @@ public class Search extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String selectedIngrs = request.getParameter("selectedIngrs");
-        RecipeDAO rdao = new RecipeDAO();
-        ArrayList<Recipe> recipeList = rdao.getRecipesFromIngredients(selectedIngrs);
-        request.setAttribute("list", recipeList);
-        
-        HttpSession session = request.getSession();
-        Object object = session.getAttribute("account");
-        User u = (User) object;
-        request.setAttribute("user", u);
-        request.getRequestDispatcher("showRecipes.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

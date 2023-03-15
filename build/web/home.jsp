@@ -8,7 +8,7 @@
         <meta name="description" content="Homepage for MyFridge" />
         <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors, modified by Mmotkim" />
         <meta name="generator" content="Hugo 0.101.0" />
-        <title>Carousel Template Â· Bootstrap v4.6</title>
+        <title>My Fridge | Home</title>
 
         <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/carousel/" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
@@ -67,7 +67,7 @@
                     </form>
                 </div>
             </div>
-
+            
             <!-- Marketing messaging and featurettes
         ================================================== -->
             <!-- Wrap the rest of the page in another container to center all the content. -->

@@ -50,7 +50,7 @@
     <!-- header -->
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark mx-5 px-5 fixed-top" style="background-color: rgba(0, 0, 0, 0.3); border-radius: 20px; margin-top: 10px">
-        <a class="navbar-brand" href="#"><h3>My Fridge</h3></a>
+        <a class="navbar-brand" href="./HomePage"><h3>My Fridge</h3></a>
         <button
           class="navbar-toggler"
           type="button"

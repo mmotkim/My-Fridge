@@ -100,7 +100,7 @@
                                         <a href="./EditRecipe?rid=${t.getRecipeId()}" class="card-link" ><i class="bi bi-file-plus" style="font-size: 2rem;" ></i></a>
                                         <a href="./RecipeDetails?rid=${t.getRecipeId()}" class="card-link" ><i class="bi bi-eye" style="font-size: 2rem;" ></i></a>    
                                         
-                                        <c:if test="${u.getRoleId()==1}">
+                                        <c:if test="${user.getRoleId()==1}">
                                         <a href="./DeleteRecipe?rid=${t.getRecipeId()}" class="card-link"><i class="bi bi-trash3" style="font-size: 2rem"></i></a>
                                         </c:if>
                                     </div>

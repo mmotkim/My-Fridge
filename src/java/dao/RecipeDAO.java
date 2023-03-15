@@ -272,6 +272,14 @@ public class RecipeDAO extends DBContext {
         }
     }
 
+    public void duplicateRecipe(int userId, int recipeId){
+        RecipeDAO rdao = new RecipeDAO();
+        Recipe r = getRecipeByID(recipeId);
+        r.setName("Copy of " + r.getName());
+        addRecipe(userId, r.getName(), r.getInstructions(), r.getTags(), r.getServings(), r.getImage(), r.getIngredients());
+        System.out.println("duplicated.");
+    }
+    
     public ArrayList<Ingredient> getAllIngredients() {
         String sql = "SELECT * from [Ingredients]";
         ArrayList<Ingredient> list = new ArrayList<>();

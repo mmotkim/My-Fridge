@@ -4,7 +4,8 @@
  */
 package controller;
 
-import dao.RecipeDAO;
+import dao.MD5;
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,15 +14,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
-import model.Ingredient;
-import model.Recipe;
 import model.User;
 
 /**
  *
  * @author mmotk
  */
-public class Search extends HttpServlet {
+public class ChangePass extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,15 +34,16 @@ public class Search extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         HttpSession session = request.getSession();
+
         Object object = session.getAttribute("account");
-        RecipeDAO rdao = new RecipeDAO();
-        ArrayList<Ingredient> ingrs = rdao.getAllIngredients();
         User u = (User) object;
-        request.setAttribute("ingrs", ingrs);
-        request.setAttribute("user", u);
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+
+        if (session.getAttribute("account") == null) {
+            response.sendRedirect("login");
+        } else {
+            response.sendRedirect("changePass.jsp");
+        }
 
     }
 
@@ -73,25 +73,43 @@ public class Search extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String selectedIngrs = request.getParameter("selectedIngrs");
-        RecipeDAO rdao = new RecipeDAO();
-        ArrayList<Recipe> recipeList = rdao.getRecipesFromIngredients(selectedIngrs);
-        request.setAttribute("list", recipeList);
-        
-        HttpSession session = request.getSession();
-        Object object = session.getAttribute("account");
-        User u = (User) object;
-        request.setAttribute("user", u);
-        request.getRequestDispatcher("showRecipes.jsp").forward(request, response);
+        try {
+            HttpSession session = request.getSession();
+            Object object = session.getAttribute("account");
+            User u = (User) object;
+            String oldPass = request.getParameter("oldPass");
+            String newPass = request.getParameter("newPass");
+            MD5 md5 = new MD5();
+            UserDAO udao = new UserDAO();
+            ArrayList<User> userList = udao.getAllUser();
+            response.getWriter().println(userList.size());
+            String mess = "Wrong password!";
+            for (User user : userList) {
+                if (user.getPassword().equals(md5.getMd5(oldPass))) {
+                    session.setAttribute("account", user);
+                    mess = "success";
+                }
+            }
+            if (mess.equals("success")) {
+                udao.changePassword(u.getId().toString(), newPass);
+                response.sendRedirect("./HomePage");
+            } else {
+                request.setAttribute("mess", mess);
+                request.getRequestDispatcher("changePass.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+}
+
+/**
+ * Returns a short description of the servlet.
+ *
+ * @return a String containing servlet description
+ */
+@Override
+public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

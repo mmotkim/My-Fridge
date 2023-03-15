@@ -76,8 +76,8 @@ public class UserDAO extends DBContext {
     }
 
     public void insertUser(String name, String email, String pass) {
-        String sql = "  insert into [User] ([roleId],[email],[password],[name])\n"
-                + "  values (0,?,?,?)";
+        String sql = " insert into [User] ([roleId],[email],[password],[name])\n"
+                + "  values (2,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, email);

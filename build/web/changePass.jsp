@@ -35,10 +35,15 @@
               <form action="./login" method="post" class="signin-form">
                   
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control" placeholder="Email Address" required />
+                  <input id="password-field" name="oldPass" type="password" class="form-control" placeholder="Old Password" required />
+                  <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                </div>  
+                <div class="form-group">
+                  <input id="password-field" name="newPass" type="password" class="form-control" placeholder="New Password" required />
+                  <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
                 <div class="form-group">
-                  <input id="password-field" name="pass" type="password" class="form-control" placeholder="Password" required />
+                  <input id="password-field" name="newPass" type="password" class="form-control" placeholder="Confirm New Password" required />
                   <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
                   
@@ -46,25 +51,12 @@
                   <button type="submit"  class="form-control btn btn-primary submit px-3">Sign In</button>
                 </div>
                   
-                <div class="form-group d-md-flex">
-                  <div class="w-50">
-                    <label class="checkbox-wrap checkbox-primary"
-                      >Remember Me
-                      <input type="checkbox" checked />
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                  <div class="w-50 text-md-right">
-                    <a href="#" style="color: #fbceb5">Forgot Password</a>
-                  </div>
-                </div>
+               
               </form>
               <p class="w-100 text-center">${mess}</p>
 
-              <p class="w-100 text-center">&mdash; Don't have an account? &mdash;</p>
-              <div class="social d-flex text-center">
-                <a href="./register.jsp" class="px-2 py-2 mr-md-1 rounded">Register</a>
-              </div>
+              
+              
             </div>
           </div>
         </div>

@@ -63,7 +63,7 @@
 
               <p class="w-100 text-center">&mdash; Don't have an account? &mdash;</p>
               <div class="social d-flex text-center">
-                <a href="#" class="px-2 py-2 mr-md-1 rounded">Register</a>
+                <a href="./register.jsp" class="px-2 py-2 mr-md-1 rounded">Register</a>
               </div>
             </div>
           </div>

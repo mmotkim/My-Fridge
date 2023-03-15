@@ -108,7 +108,7 @@
 
                             </form>
                             <div class="social d-flex text-center">
-                                <a href="#" class="px-2 py-2 mr-md-1 rounded">Back</a>
+                                <a href="./HomePage" class="px-2 py-2 mr-md-1 rounded">Back</a>
                             </div>
                         </div>
                     </div>
