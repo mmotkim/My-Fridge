@@ -79,7 +79,7 @@
                         <p class="lead">Select what you have in your fridge, we'll do the recommendations</p>
                     </div>
                     <div class="col-md-5">
-                        <img src="Tests/smile.jpg" width="500" height="500" class="featurette-image img-fluid mx-auto" alt="Select ingredients" />
+                        <img src="Tests/assets/1.jpg" width="500" height="500" class="featurette-image img-fluid mx-auto" alt="Select ingredients" />
                     </div>
                 </div>
 
@@ -91,7 +91,7 @@
                         <p class="lead">Easy steps, fluently al dente.</p>
                     </div>
                     <div class="col-md-5 order-md-1">
-                        <img src="Tests/smile.jpg" width="500" height="500" class="featurette-image img-fluid mx-auto" alt="Select ingredients" />
+                        <img src="Tests/assets/2.jpg" width="500" height="500" class="featurette-image img-fluid mx-auto" alt="Select ingredients" />
                     </div>
                 </div>
 

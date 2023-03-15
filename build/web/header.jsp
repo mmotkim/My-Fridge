@@ -79,6 +79,12 @@
             </li>
             <li class="nav-item">      
             </c:if>
+            <c:if test="${sessionScope['account']!=null}">
+            <li class="nav-item">
+              <a class="nav-link" href="./Logout">Log Out</a>
+            </li>
+            <li class="nav-item">      
+            </c:if>
             <c:if test="${sessionScope['account']==null}">
               <a class="nav-link" href="./register">Register</a>
             </li>
