@@ -45,34 +45,46 @@
             class="container-fluid vh-100"
             >
             <header>
-                
+
                 <div class="nav navbar-expand w-100 nav-fill navbar-dark bg-transparent">
 
                     <div class="" id="navbarText">
+
+
+
                         <ul class="navbar-nav mr-auto p-2">
+                            <c:if test="${sessionScope['account']!=null}">
+                                <li class="nav-link">
+                                    <a class="nav-link mr-md-1 rounded" href="./ChangePass">Hello, ${user.getName()}</a>
+                                </li>
+                            </c:if>
+
                             <li class="nav-item">
                                 <a class="nav-link pr-4" href="./Search">
                                     <h3>Search recipes</h3>
                                 </a>
                             </li>
                             <c:if test="${sessionScope['account']!=null}">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">
-                                    <h3>My recipes</h3><span class="sr-only">(current)</span>
-                                </a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">
+                                        <h3>My recipes</h3><span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
                             </c:if>
                             <c:if test="${sessionScope['account']!=null}">
-                            <li class="nav-item">
-                                <a class="nav-link" href="AddRecipe">
-                                    <h3>Create recipe</h3>
-                                </a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="AddRecipe">
+                                        <h3>Create recipe</h3>
+                                    </a>
+                                </li>
                             </c:if>
+
 
                         </ul>
 
+
                     </div>
+
                 </div>
             </header>
             <div class="container marketing">

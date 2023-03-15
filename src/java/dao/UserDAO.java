@@ -113,12 +113,12 @@ public class UserDAO extends DBContext {
         return 0;
     }
 
-    public void changePassword(String uid, String pass) {
+    public void changePassword(int uid, String pass) {
         String sql = " update [User] set [password]=? where [userId] =?";
         try {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, md5.getMd5(pass));
-            stm.setString(2, uid);
+            stm.setInt(2, uid);
             stm.executeUpdate();
         } catch (SQLException e) {
         }

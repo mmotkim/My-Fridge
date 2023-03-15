@@ -91,7 +91,7 @@ public class ChangePass extends HttpServlet {
                 }
             }
             if (mess.equals("success")) {
-                udao.changePassword(u.getId().toString(), newPass);
+                udao.changePassword(u.getId(), newPass);
                 response.sendRedirect("./HomePage");
             } else {
                 request.setAttribute("mess", mess);
@@ -101,15 +101,13 @@ public class ChangePass extends HttpServlet {
         }
     }
 
-}
-
-/**
- * Returns a short description of the servlet.
- *
- * @return a String containing servlet description
- */
-@Override
-public String getServletInfo() {
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
