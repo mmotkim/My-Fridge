@@ -12,6 +12,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import model.Ingredient;
+import model.Recipe;
 import model.User;
 
 /**
@@ -34,8 +37,10 @@ public class EditRecipe extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession();
-        
-        
+        RecipeDAO rdao = new RecipeDAO();
+        Recipe r = rdao.getRecipeByID(Integer.parseInt(request.getParameter("rid")));
+        request.setAttribute("r", r);
+
         request.getRequestDispatcher("editRecipe.jsp").forward(request, response);
 
     }
@@ -77,6 +82,7 @@ public class EditRecipe extends HttpServlet {
         String servings = request.getParameter("servings");
         String image = request.getParameter("image");
         rdao.editRecipe(Integer.parseInt(rid), name, instruction, servings, image, ingredients);
+        response.sendRedirect("MyRecipes");
     }
 
     /**

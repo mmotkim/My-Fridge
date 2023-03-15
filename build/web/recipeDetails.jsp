@@ -67,7 +67,7 @@
 
 
                 <div class="form-group">
-                    <a href="./EditRecipe?rid=${t.getRecipeId()}">
+                    <a href="./EditRecipe?rid=${r.getRecipeId()}">
                         <button type="button" class="btn btn-primary px-lg-5">Edit this recipe</button>
                     </a>
                 </div>

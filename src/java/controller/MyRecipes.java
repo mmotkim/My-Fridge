@@ -38,16 +38,15 @@ public class MyRecipes extends HttpServlet {
             HttpSession session = request.getSession();
             Object object = session.getAttribute("account");
             User u = (User) object;
-            
-                RecipeDAO rdao = new RecipeDAO();
-                ArrayList<Recipe> recipeList = rdao.getRecipesFromUserID(u.getId());
-                request.setAttribute("list", recipeList);
 
-                request.getRequestDispatcher("myRecipes.jsp").forward(request, response);
+            RecipeDAO rdao = new RecipeDAO();
+            ArrayList<Recipe> recipeList = rdao.getRecipesFromUserID(u.getId());
+            request.setAttribute("list", recipeList);
 
-            
+            request.getRequestDispatcher("myRecipes.jsp").forward(request, response);
+
         } catch (Exception e) {
-                
+
         }
     }
 

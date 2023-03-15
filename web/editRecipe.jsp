@@ -63,29 +63,27 @@
                             </div><br>
 
                             <div class="form-group mt-md-3">
-                                <button type="submit" class="form-control btn btn-primary submit px-3">Create</button>
+                                <button type="submit" class="form-control btn btn-primary submit px-3">Edit</button>
                             </div>
 
                         </form>
                         <div class="social d-flex text-center">
-                            <a href="#" class="px-2 py-2 mr-md-1 rounded">Back</a>
+                            <a href="./HomePage" class="px-2 py-2 mr-md-1 rounded">Back</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col pt-5">
-                    <div class="card" style="width: 30em; height: 36lh">
-                        <img class="card-img-top" src="Tests/2b.jpg" alt="cover">
+                    <div class="card" style="width: 30em; height: 30lh">
+                        <img class="card-img-top" src="${r.getImage()}" alt="cover">
                         <div class="card-body">
-                            <h5 class="card-title">Title</h5>
-                            <p class="card-text" style="">description asdfaskdjfbn aslkdjfnaskldf jnaskldfjn aslkdjfn
-                                askljdfnlaksdjnf aklsjdnf lkasjdnflk </p>
+                            <h5 class="card-title">${r.getName()}</h5>
+                            <p class="card-text" style="">${r.getInstructions()}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ingredients asdfa sdf asdfasdf asasf dfsdfa sdfas dfasdf asdfas
-                                dfasdf asfasdf </li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
+                            <li class="list-group-item">${r.getIngredients()}</li>
+                            <li class="list-group-item">Tag(s): ${!r.getTags().replaceAll("\\s+","")}</li>
+                            <li class="list-group-item">Serving(s): ${r.getServings()}</li>
                         </ul>
                     </div>
                 </div>
