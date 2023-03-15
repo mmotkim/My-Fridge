@@ -5,8 +5,7 @@
  */
 package controller;
 
-import dao.OrderDAO;
-import dao.ProductDAO;
+
 import dao.RecipeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +15,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Category;
 import model.Recipe;
 import model.User;
 
@@ -26,20 +24,26 @@ import model.User;
  */
 public class HomePage extends HttpServlet {
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        
+        Object object = session.getAttribute("account");
+        User u = (User) object;
+        request.getRequestDispatcher("home.jsp").forward(request, response);
+
 
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        Object object = session.getAttribute("account");
+        User u = (User) object;
         request.getRequestDispatcher("home.jsp").forward(request, response);
-
+        
     }
 
     /**
@@ -60,7 +64,7 @@ public class HomePage extends HttpServlet {
         ArrayList<Recipe> recipeList = rdao.getRecipesFromIngredients(homeSearch);
         request.setAttribute("list", recipeList);
         request.getRequestDispatcher("showRecipes.jsp").forward(request, response);
-        
+
     }
 
     /**
@@ -73,9 +77,6 @@ public class HomePage extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public static void main(String[] args) {
-        
-        
-    }
+//   
 
 }

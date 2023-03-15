@@ -29,8 +29,8 @@ public class UserDAO extends DBContext {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Roles r = new Roles(rs.getInt(2));
-                list.add(new User(rs.getInt(1), r ,rs.getString(3), rs.getString(4), rs.getString(5)));
+                
+                list.add(new User(rs.getInt(1), rs.getInt(2) ,rs.getString(3), rs.getString(4), rs.getString(5)));
             }
 
         } catch (Exception e) {
@@ -40,14 +40,14 @@ public class UserDAO extends DBContext {
     }
 
     public User getUserById(int id) {
-        String sql = "select * from [Users] where [userId]=?";
+        String sql = "select * from [User] where [userId]=?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Roles r = new Roles(rs.getInt(2));
-                User u = new User(rs.getInt(1), r ,rs.getString(3), rs.getString(4), rs.getString(5));
+                
+                User u = new User(rs.getInt(1), rs.getInt(2) ,rs.getString(3), rs.getString(4), rs.getString(5));
                 return u;
             }
 
@@ -64,8 +64,8 @@ public class UserDAO extends DBContext {
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Roles r = new Roles(rs.getInt(2));
-                User u = new User(rs.getInt(1), r ,rs.getString(3), rs.getString(4), rs.getString(5));
+                
+                User u = new User(rs.getInt(1), rs.getInt(2) ,rs.getString(3), rs.getString(4), rs.getString(5));
                 return u;
             }
 
@@ -77,7 +77,7 @@ public class UserDAO extends DBContext {
 
     public void insertUser(String name, String email, String pass) {
         String sql = "  insert into [User] ([roleId],[email],[password],[name])\n"
-                + "  values (1,?,?,?)";
+                + "  values (0,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, email);

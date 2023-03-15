@@ -38,48 +38,11 @@
     </head>
 
     <body style="background-color: white">
-        <!--    <header>
-              <nav class="navbar navbar-expand-sm navbar-dark mx-5 px-5 fixed-top" style="background-color: rgba(0, 0, 0, 0.3); border-radius: 20px; margin-top: 10px">
-                <a class="navbar-brand" href="#"><h3>My Fridge</h3></a>
-                <button
-                  class="navbar-toggler"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#navbarCollapse"
-                  aria-controls="navbarCollapse"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Search by Ingredients</a>
-                    </li>
-                  </ul>
         
-                  <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                      <a class="nav-link" href="./recipes">Your Recipes</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="./register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link mr-md-1 rounded" href="./login">Login</a>
-                    </li>
-                  </ul>
-                  
-                </div>
-              </nav>
-            </header>-->
 
-        <jsp:include page="header.jsp"/>
+        
         <main role="main">
+            <jsp:include page="header.jsp"/>
             <div
                 style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(Tests/rice.jpg); background-repeat: no-repeat; background-size: cover"
                 class="container-fluid vh-100 d-flex align-items-center justify-content-center text-center"

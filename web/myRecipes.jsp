@@ -45,29 +45,29 @@
             class="container-fluid vh-100"
             >
             <header>
-
+                
                 <div class="nav navbar-expand w-100 nav-fill navbar-dark bg-transparent">
 
                     <div class="" id="navbarText">
                         <ul class="navbar-nav mr-auto p-2">
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a class="nav-link pr-4" href="./Search">
-                                    <h3>Search recipes</h3><span class="sr-only">(current)</span>
+                                    <h3>Search recipes</h3>
                                 </a>
                             </li>
                             <c:if test="${sessionScope['account']!=null}">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="./MyRecipes">
-                                        <h3>My recipes</h3>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">
+                                    <h3>My recipes</h3><span class="sr-only">(current)</span>
+                                </a>
+                            </li>
                             </c:if>
                             <c:if test="${sessionScope['account']!=null}">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="AddRecipe">
-                                        <h3>Create recipe</h3>
-                                    </a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="AddRecipe">
+                                    <h3>Create recipe</h3>
+                                </a>
+                            </li>
                             </c:if>
 
                         </ul>
@@ -99,10 +99,7 @@
                                     <div class="d-flex justify-content-around">
                                         <a href="#" class="card-link" ><i class="bi bi-file-plus" style="font-size: 2rem;" ></i></a>
                                         <a href="./RecipeDetails?rid=${t.getRecipeId()}" class="card-link" ><i class="bi bi-eye" style="font-size: 2rem;" ></i></a>    
-                                        
-                                        <c:if test="${u.getRoleId()==1}">
                                         <a href="./DeleteRecipe?rid=${t.getRecipeId()}" class="card-link"><i class="bi bi-trash3" style="font-size: 2rem"></i></a>
-                                        </c:if>
                                     </div>
                                 </div>
                             </div>

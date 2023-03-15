@@ -111,7 +111,7 @@ public class AdminFilter implements Filter {
         } else {
             Object object = session.getAttribute("account");
             User u = (User) object;
-            if (u.getRoles().getId()==2) {
+            if (u.getRoleId()==2) {
                         chain.doFilter(request, response);
             }else{
             res.getWriter().println("<h1>You cant access this site</h1>");

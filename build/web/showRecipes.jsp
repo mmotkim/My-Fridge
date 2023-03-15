@@ -40,40 +40,97 @@
     </head>
 
     <body>
-        <jsp:include page="header.jsp"/>
-        <div class="title">
-            <h1>
-                Recipes found:
-            </h1>
-        </div>
-        <div class="row justify-content-center">
+        <div
+            style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(Tests/rice.jpg); background-repeat: no-repeat; background-size: cover"
+            class="container-fluid vh-100"
+            >
+            <header>
 
-            <c:forEach var="t" items="${list}">
-                <div class="col-md-4 col-lg-3">
-                    <div class="card h-auto" style="width: 20rem">
-                        <img class="card-img-top" style="height: 12rem; object-fit: cover" src=${t.getImage()}>
-                        <div class="card-body">
-                            <h5 class="card-title">${t.getName()}</h5>
-                            <p class="card-text" style="  white-space: nowrap;
-                               overflow: hidden;
-                               text-overflow: ellipsis;">${t.getInstructions()} </p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">ingredients</li>
-                            <li class="list-group-item">${t.getServings()} serving/s</li>
+                <div class="nav navbar-expand w-100 nav-fill navbar-dark bg-transparent">
+
+                    <div class="" id="navbarText">
+                        <ul class="navbar-nav mr-auto p-2">
+                            <li class="nav-item active">
+                                <a class="nav-link pr-4" href="./Search">
+                                    <h3>Search recipes</h3><span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <c:if test="${sessionScope['account']!=null}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="./MyRecipes">
+                                        <h3>My recipes</h3>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${sessionScope['account']!=null}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="AddRecipe">
+                                        <h3>Create recipe</h3>
+                                    </a>
+                                </li>
+                            </c:if>
+
                         </ul>
-                        <div class="card-body ">
-                            <div class="d-flex justify-content-around">
-                                <a href="#" class="card-link" ><i class="bi bi-file-plus" style="font-size: 2rem;" ></i></a>
-                                <a href="#" class="card-link" ><i class="bi bi-eye" style="font-size: 2rem;" ></i></a>    
+
+                    </div>
+                </div>
+            </header>
+            <div class="container marketing">
+                <hr class="featurette-divider m-0 " style=" background-color: white"/>
+            </div>
+            <section class="pt-5">
+                <div class="row justify-content-center">
+
+                    <c:forEach var="t" items="${list}">
+                        <div class="col-md-4 col-lg-3">
+                            <div class="card h-auto" style="width: 20rem">
+                                <img class="card-img-top" style="height: 12rem; object-fit: cover" src=${t.getImage()}>
+                                <div class="card-body">
+                                    <h5 class="card-title">${t.getName()}</h5>
+                                    <p class="card-text" style="  white-space: nowrap;
+                                       overflow: hidden;
+                                       text-overflow: ellipsis;">${t.getInstructions()} </p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">${t.getIngredients()}</li>
+                                    <li class="list-group-item">${t.getServings()} serving/s</li>
+                                </ul>
+                                <div class="card-body ">
+                                    <div class="d-flex justify-content-around">
+                                        <a href="#" class="card-link" ><i class="bi bi-file-plus" style="font-size: 2rem;" ></i></a>
+                                        <a href="./RecipeDetails?rid=${t.getRecipeId()}" class="card-link" ><i class="bi bi-eye" style="font-size: 2rem;" ></i></a>    
+                                        
+                                        <c:if test="${u.getRoleId()==1}">
+                                        <a href="./DeleteRecipe?rid=${t.getRecipeId()}" class="card-link"><i class="bi bi-trash3" style="font-size: 2rem"></i></a>
+                                        </c:if>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    </c:forEach>
                 </div>
-            </c:forEach>
+            </section>
         </div>
-
     </body>
 
+    <style>
+
+        a{
+            color:#fbceb5;
+            text-decoration:none;
+            background-color:transparent
+        }
+        a:hover{
+            color:#D4a084;
+            text-decoration:underline
+        }
+        a:not([href]):not([class]){
+            color:inherit;
+            text-decoration:none
+        }
+        a:not([href]):not([class]):hover{
+            color:inherit;
+            text-decoration:none
+        }
+    </style>
 </html>

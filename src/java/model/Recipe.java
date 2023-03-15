@@ -17,14 +17,12 @@ public class Recipe {
     private boolean isOfficial;
     private String name;
     private String instructions;
-    private String[] tags;
+    private String tags;
     private String servings;
     private String image;
+    private String ingredients;
 
-    public Recipe() {
-    }
-
-    public Recipe(int recipeId, boolean isOfficial, String name, String instructions, String[] tags, String servings, String image) {
+    public Recipe(int recipeId, boolean isOfficial, String name, String instructions, String tags, String servings, String image, String ingredients) {
         this.recipeId = recipeId;
         this.isOfficial = isOfficial;
         this.name = name;
@@ -32,7 +30,24 @@ public class Recipe {
         this.tags = tags;
         this.servings = servings;
         this.image = image;
+        this.ingredients = ingredients;
     }
+
+    
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+    
+    
+    public Recipe() {
+    }
+
+    
 
     public Recipe(int recipeId, boolean isOfficial, String name, String instructions, String servings, String image) {
         this.recipeId = recipeId;
@@ -75,13 +90,15 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public String[] getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(String[] tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
+
+    
 
     public String getServings() {
         return servings;

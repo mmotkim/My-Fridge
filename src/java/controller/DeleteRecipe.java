@@ -1,27 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controller;
 
-import dao.MD5;
-import dao.UserDAO;
+import dao.RecipeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.User;
 
 /**
  *
- * @author Admin
+ * @author mmotk
  */
-public class LoginController extends HttpServlet {
+public class DeleteRecipe extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +30,10 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        RecipeDAO rdao = new RecipeDAO();
+        String rid = request.getParameter("rid") == null ? "" : request.getParameter("rid");
+        rdao.deleteByID(Integer.parseInt(rid));
+        response.sendRedirect("MyRecipes");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,8 +48,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -65,34 +62,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-        try {
-            HttpSession session = request.getSession();
-            String email = request.getParameter("email");
-            String pass = request.getParameter("pass");
-            request.setAttribute("e", email);
-            request.setAttribute("p", pass);
-            UserDAO udao = new UserDAO();
-            MD5 md5 = new MD5();
-            ArrayList<User> userList = udao.getAllUser();
-            response.getWriter().println(userList.size());
-            String mess = "Email or password wrong!";
-            for (User user : userList) {
-                if (user.getEmail().equals(email) && user.getPassword().equals(md5.getMd5(pass))) {
-                    session.setAttribute("account", user);
-                    mess = "success";
-                }
-            }
-            if (mess.equals("success")) {
-               response.sendRedirect("./HomePage");
-                
-            } else {
-                request.setAttribute("mess", mess);
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            }
-        } catch (Exception e) {
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -10,31 +10,38 @@ package model;
  * @author Admin
  */
 public class User {
+
     private int id;
-    private Roles roles;
+    private int roleId;
     private String email;
     private String password;
     private String name;
 
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    public User(int id, int roleId, String email, String password, String name) {
+        this.id = id;
+        this.roleId = roleId;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
+
+    public User(int roleId, String email, String password, String name) {
+        this.roleId = roleId;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
+
     public User() {
     }
-
-    public User(int id, Roles roles, String email, String password, String name) {
-        this.id = id;
-        this.roles = roles;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-    }
-
-    public User(Roles roles, String email, String password, String name) {
-        this.roles = roles;
-        this.email = email;
-        this.password = password;
-        this.name = name;
-    }
-
-    
 
     public int getId() {
         return id;
@@ -42,14 +49,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Roles getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Roles roles) {
-        this.roles = roles;
     }
 
     public String getEmail() {
@@ -75,6 +74,5 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
 }

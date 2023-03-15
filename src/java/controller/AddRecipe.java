@@ -1,15 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controller;
 
-import dao.MD5;
-import dao.UserDAO;
+import dao.RecipeDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,9 +15,9 @@ import model.User;
 
 /**
  *
- * @author Admin
+ * @author mmotk
  */
-public class LoginController extends HttpServlet {
+public class AddRecipe extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,6 +31,16 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try {
+            HttpSession session = request.getSession();
+            if (session.getAttribute("account") == null) {
+                response.sendRedirect("login");
+            } else {
+                response.sendRedirect("addRecipe.jsp");
+            }
+
+        } catch (Exception e) {
+        }
 
     }
 
@@ -50,8 +56,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -66,32 +71,26 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         try {
             HttpSession session = request.getSession();
-            String email = request.getParameter("email");
-            String pass = request.getParameter("pass");
-            request.setAttribute("e", email);
-            request.setAttribute("p", pass);
-            UserDAO udao = new UserDAO();
-            MD5 md5 = new MD5();
-            ArrayList<User> userList = udao.getAllUser();
-            response.getWriter().println(userList.size());
-            String mess = "Email or password wrong!";
-            for (User user : userList) {
-                if (user.getEmail().equals(email) && user.getPassword().equals(md5.getMd5(pass))) {
-                    session.setAttribute("account", user);
-                    mess = "success";
-                }
-            }
-            if (mess.equals("success")) {
-               response.sendRedirect("./HomePage");
-                
+            if (session.getAttribute("account") == null) {
+                response.sendRedirect("login");
             } else {
-                request.setAttribute("mess", mess);
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                User u = (User) session.getAttribute("account");
+                String name = request.getParameter("name");
+                String instruction = request.getParameter("instruction");
+                String ingredients = request.getParameter("ingredients");
+                String servings = request.getParameter("servings");
+                String image = request.getParameter("image");
+                String tag = request.getParameter("tag");
+                RecipeDAO rdao = new RecipeDAO();
+                rdao.addRecipe(u.getId(), name, instruction, tag, servings, image, ingredients);
             }
+
+            response.sendRedirect("./showRecipes");
         } catch (Exception e) {
+            response.sendRedirect("./404.html");
+
         }
     }
 

@@ -68,14 +68,14 @@
               <a class="nav-link" href="HomePage">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Search by Ingredients</a>
+              <a class="nav-link" href="./Search">Checkbox Recipe Lookup</a>
             </li>
           </ul>
 
           <ul class="navbar-nav ml-auto">
             <c:if test="${sessionScope['account']!=null}">
             <li class="nav-item">
-              <a class="nav-link" href="./recipes">Your Recipes</a>
+              <a class="nav-link" href="./MyRecipes">Your Recipes</a>
             </li>
             <li class="nav-item">      
             </c:if>

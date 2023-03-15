@@ -49,7 +49,7 @@
 
     <!-- header -->
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark mx-5 px-5 fixed-top" style="background-color: rgba(0, 0, 0, 0.3); border-radius: 20px; margin-top: 10px">
+      <nav class="navbar navbar-expand nav-fill w-100 navbar-light" style="border-radius: 0; background-color: rgba(251, 206, 181, 1); border-radius: 20px; margin-top: 10px">
         <a class="navbar-brand" href="#"><h3>My Fridge</h3></a>
         <button
           class="navbar-toggler"
@@ -68,14 +68,14 @@
               <a class="nav-link" href="HomePage">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./Search">Checkbox Recipe Lookup</a>
+              <a class="nav-link" href="#">Search by Ingredients</a>
             </li>
           </ul>
 
           <ul class="navbar-nav ml-auto">
             <c:if test="${sessionScope['account']!=null}">
             <li class="nav-item">
-              <a class="nav-link" href="./MyRecipes">Your Recipes</a>
+              <a class="nav-link" href="./recipes">Your Recipes</a>
             </li>
             <li class="nav-item">      
             </c:if>
