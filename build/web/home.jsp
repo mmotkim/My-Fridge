@@ -31,6 +31,10 @@
                     font-size: 3.5rem;
                 }
             }
+
+            img {
+                object-fit: cover;
+            }
         </style>
 
         <!-- Custom styles for this template -->
@@ -38,9 +42,9 @@
     </head>
 
     <body style="background-color: white">
-        
 
-        
+
+
         <main role="main">
             <jsp:include page="header.jsp"/>
             <div
@@ -91,7 +95,7 @@
                         <p class="lead">Easy steps, fluently al dente.</p>
                     </div>
                     <div class="col-md-5 order-md-1">
-                        <img src="Tests/assets/2.jpg" width="500" height="500" class="featurette-image img-fluid mx-auto" alt="Select ingredients" />
+                        <img src="Tests/assets/2.png" width="500" height="500" class="featurette-image img-fluid mx-auto" alt="Select ingredients" />
                     </div>
                 </div>
 
