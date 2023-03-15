@@ -67,11 +67,15 @@
 
 
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary px-lg-5">Edit this recipe</button>
+                    <a href="./EditRecipe?rid=${t.getRecipeId()}">
+                        <button type="button" class="btn btn-primary px-lg-5">Edit this recipe</button>
+                    </a>
                 </div>
 
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary px-lg-5">Save this recipe</button>
+                    <a href="./AddRecipe">                    
+                        <button type="button" class="btn btn-primary px-lg-5">Save this recipe</button>
+                    </a>
                 </div>
 
             </div>

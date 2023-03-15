@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Tests/css/bootstrap.min.css" rel="stylesheet" />
 
 
 </head>
 
 <body>
-    <div style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(rice.jpg); background-repeat: no-repeat; background-size: cover"
+    <div style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(Tests/rice.jpg); background-repeat: no-repeat; background-size: cover"
         class="container-fluid vh-100 d-flex">
 
         <div class="container">
@@ -28,7 +28,7 @@
                 <div class="col">
                     <div class="pt-5">
                         <h3 class="mb-4 text-light">Edit your recipe</h3>
-                        <form action="#" class="form-text">
+                        <form action="./EditRecipe" method="post" class="form-text">
                             <label class="text-light" for="recipeName">Recipe Name</label>
                             <div class="input-group mt-sm">
                                 <input name="name" id="recipeName" value="current Recipe Name" type="text"
@@ -54,6 +54,13 @@
                             <div class="input-group mt-md">
                                 <input id="servings" type="range" class="custom-range" min="1" max="10" step="1" id="customRange3" value="0">
                             </div><br>
+                            
+                            <label class="text-light" for="recipeName">Image Link: </label>
+                            <div class="input-group mt-md">
+                                <textarea name="image" id="recipeIngredients" value="current description"
+                                    type="text" class="form-control" placeholder="www.A nice cover.com"
+                                    required></textarea>
+                            </div><br>
 
                             <div class="form-group mt-md-3">
                                 <button type="submit" class="form-control btn btn-primary submit px-3">Create</button>
@@ -68,7 +75,7 @@
 
                 <div class="col pt-5">
                     <div class="card" style="width: 30em; height: 36lh">
-                        <img class="card-img-top" src="2b.jpg" alt="cover">
+                        <img class="card-img-top" src="Tests/2b.jpg" alt="cover">
                         <div class="card-body">
                             <h5 class="card-title">Title</h5>
                             <p class="card-text" style="">description asdfaskdjfbn aslkdjfnaskldf jnaskldfjn aslkdjfn

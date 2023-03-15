@@ -97,7 +97,7 @@
                                 </ul>
                                 <div class="card-body ">
                                     <div class="d-flex justify-content-around">
-                                        <a href="#" class="card-link" ><i class="bi bi-file-plus" style="font-size: 2rem;" ></i></a>
+                                        <a href="./EditRecipe?rid=${t.getRecipeId()}" class="card-link" ><i class="bi bi-file-plus" style="font-size: 2rem;" ></i></a>
                                         <a href="./RecipeDetails?rid=${t.getRecipeId()}" class="card-link" ><i class="bi bi-eye" style="font-size: 2rem;" ></i></a>    
                                         
                                         <c:if test="${u.getRoleId()==1}">

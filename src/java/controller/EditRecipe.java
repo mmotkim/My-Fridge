@@ -6,6 +6,7 @@ package controller;
 
 import dao.RecipeDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ import model.User;
  *
  * @author mmotk
  */
-public class AddRecipe extends HttpServlet {
+public class EditRecipe extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,16 +32,11 @@ public class AddRecipe extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            HttpSession session = request.getSession();
-            if (session.getAttribute("account") == null) {
-                response.sendRedirect("login");
-            } else {
-                response.sendRedirect("addRecipe.jsp");
-            }
-
-        } catch (Exception e) {
-        }
+        
+        HttpSession session = request.getSession();
+        
+        
+        request.getRequestDispatcher("editRecipe.jsp").forward(request, response);
 
     }
 
@@ -70,28 +66,17 @@ public class AddRecipe extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try {
-            HttpSession session = request.getSession();
-            if (session.getAttribute("account") == null) {
-                response.sendRedirect("login");
-            } else {
-                User u = (User) session.getAttribute("account");
-                String name = request.getParameter("name");
-                String instruction = request.getParameter("instruction");
-                String ingredients = request.getParameter("ingredients");
-                String servings = request.getParameter("servings");
-                String image = request.getParameter("image");
-                String tag = request.getParameter("tag");
-                RecipeDAO rdao = new RecipeDAO();
-                rdao.addRecipe(u.getId(), name, instruction, tag, servings, image, ingredients);
-            }
-
-            response.sendRedirect("./MyRecipes");
-        } catch (Exception e) {
-            response.sendRedirect("./404.html");
-
-        }
+        RecipeDAO rdao = new RecipeDAO();
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("account");
+        
+        String rid = request.getParameter("rid") == null ? "" : request.getParameter("rid");
+        String name = request.getParameter("name");
+        String instruction = request.getParameter("instruction");
+        String ingredients = request.getParameter("ingredients");
+        String servings = request.getParameter("servings");
+        String image = request.getParameter("image");
+        rdao.editRecipe(Integer.parseInt(rid), name, instruction, servings, image, ingredients);
     }
 
     /**

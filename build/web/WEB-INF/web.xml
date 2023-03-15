@@ -141,6 +141,10 @@
         <servlet-name>DeleteRecipe</servlet-name>
         <servlet-class>controller.DeleteRecipe</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditRecipe</servlet-name>
+        <servlet-class>controller.EditRecipe</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -252,6 +256,10 @@
     <servlet-mapping>
         <servlet-name>DeleteRecipe</servlet-name>
         <url-pattern>/DeleteRecipe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditRecipe</servlet-name>
+        <url-pattern>/EditRecipe</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
