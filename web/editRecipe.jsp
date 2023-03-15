@@ -28,7 +28,7 @@
                 <div class="col">
                     <div class="pt-5">
                         <h3 class="mb-4 text-light">Edit your recipe</h3>
-                        <form action="./EditRecipe" method="post" class="form-text">
+                        <form action="./EditRecipe?rid=${r.getRecipeId()}" method="post" class="form-text">
                             <label class="text-light" for="recipeName">Recipe Name</label>
                             <div class="input-group mt-sm">
                                 <input name="name" id="recipeName" value="current Recipe Name" type="text"
